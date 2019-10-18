@@ -1,0 +1,151 @@
+RAft 
+
+QUORUM
+
+docker node rm nodename
+
+RECHABLE IS GIVEN ONLY FOR MANAGER  IN MANAGER STATUS
+\
+To renitialise the swarm cluster
+docker swarm init --force-new-cluster --advertise-addr ip_of_manager
+
+To add p
+ort no to a service running in swarm
+docker service update service_name --publish-add 8080:80
+
+when we restart containers get different ip,use container names
+docker maintains an internal dns 127.0.0.11
+
+
+deploy:
+ replicas: 1
+ placement:
+  constraints:
+   - node.hostname == worker1
+     (or)
+   - node.role == manager
+
+
+deploy:
+ replicas: 1
+ resources:
+  limits:
+   cpus: 0.01
+   memory: 50M
+
+
+depends_on:
+     - db
+deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+
+
+docker secrets
+=================
+
+docker secret create secretname -
+docker secret ls
+docker secret rm secret name
+
+
+printf "This is a secret" | docker secret create my_secret_data -
+
+docker service  create --name redis --secret my_secret_data redis:alpine
+
+Capture the id of the redis contianer
+docker ps --filter name=redis -q
+
+check the permissions on the secret file(read for all)
+docker container exec $(docker ps --filter name=redis -q) ls -l /run/secrets
+
+See the dat in the file
+docker container exec $(docker ps --filter name=redis -q) cat /run/secrets/my_secret_data
+
+
+
+
+Verify that the secret is not available if you commit the container.
+$ docker commit $(docker ps --filter name=redis -q) committed_redis
+
+$ docker run --rm -it committed_redis cat /run/secrets/my_secret_data
+
+cat: can't open '/run/secrets/my_secret_data': No such file or directory
+
+
+
+Remove access to the secret from the running redis service by updating the service.
+$ docker service update --secret-rm my_secret_data redis
+
+
+
+
+docker container exec -it $(docker ps --filter name=redis -q) cat /run/secrets/my_secret_data
+
+cat: can't open '/run/secrets/my_secret_data': No such file or directory
+
+
+Delete the secret
+docker secret rm my_secret_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dockersamples is the repo where the images are available
+
+visualizer available in dockersamples  for visual respresentation of stack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
