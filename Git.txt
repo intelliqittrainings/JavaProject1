@@ -1,0 +1,136 @@
+Git uses three sections on the local machine
+1 Working directory or workspace
+2 Stagging Area
+3 Local Repository
+
+Working directory is the folder where the developer creates all the
+code.The files created in this folder are initially called as 
+"Untracked files"
+
+Stagging Area is the intermediate buffer zone into which files move
+from the working directory.These files are called stagged files
+
+Local Repository is where version controlling happens and all the
+files from stagging area move into local repository.These files are called
+as commited files
+
+1 Setting username and email globally for all users
+  git config --global user.name "sai krishna"
+  git config --global user.email "intelliqit@gmail.com"
+
+2 To see the list of defaul setting done
+  git config --global --list
+
+3 To initilise the working dir as a git repository
+  git init
+  The command will create a hidden folder called .git where it will
+  store all the configurations realted to git
+
+4 To send a file from working dir to stagging area
+  git add filename
+  To send multiple files into stagging area
+  git add file1 file2 file3
+  To send all the files and folders into stagging area
+  git add .
+  Note   . represents present working directory
+
+5 To remove files from stagging area and bring them back to
+  untracked section
+  git rm --cached filename
+  (or)
+  git reset filename
+
+6 To send files from stagging area to local repository
+  git commit -m "some message"
+
+7 To see the status of the untracked files and stagged files
+  git status
+
+8 To see the list of commits that are done in local repository
+  git log
+  To see this commit history in one line format
+  git log --oneline
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
